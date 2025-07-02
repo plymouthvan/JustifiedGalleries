@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justified Galleries Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #666;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .gallery-description {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Basic reset for gallery containers */
+        .jgs-gallery {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Justified Galleries Test</h1>
+        
+        <h2>Gallery 1: Mixed Aspect Ratios</h2>
+        <div class="gallery-description">
+            Row height: 280px, Gap: 10px - Testing various landscape and portrait images
+        </div>
+        <div class="jgs-gallery">
+            <a href="https://picsum.photos/1200/800" class="gallery-item">
+                <img src="https://picsum.photos/1200/800?random=1" width="1200" height="800" loading="lazy" alt="Landscape 1">
+            </a>
+            <a href="https://picsum.photos/800/1200" class="gallery-item">
+                <img src="https://picsum.photos/800/1200?random=2" width="800" height="1200" loading="lazy" alt="Portrait 1">
+            </a>
+            <a href="https://picsum.photos/1000/600" class="gallery-item">
+                <img src="https://picsum.photos/1000/600?random=3" width="1000" height="600" loading="lazy" alt="Landscape 2">
+            </a>
+            <a href="https://picsum.photos/600/900" class="gallery-item">
+                <img src="https://picsum.photos/600/900?random=4" width="600" height="900" loading="lazy" alt="Portrait 2">
+            </a>
+            <a href="https://picsum.photos/1100/700" class="gallery-item">
+                <img src="https://picsum.photos/1100/700?random=5" width="1100" height="700" loading="lazy" alt="Landscape 3">
+            </a>
+            <a href="https://picsum.photos/900/900" class="gallery-item">
+                <img src="https://picsum.photos/900/900?random=6" width="900" height="900" loading="lazy" alt="Square 1">
+            </a>
+            <a href="https://picsum.photos/1300/650" class="gallery-item">
+                <img src="https://picsum.photos/1300/650?random=7" width="1300" height="650" loading="lazy" alt="Wide Landscape">
+            </a>
+            <a href="https://picsum.photos/700/1000" class="gallery-item">
+                <img src="https://picsum.photos/700/1000?random=8" width="700" height="1000" loading="lazy" alt="Portrait 3">
+            </a>
+        </div>
+
+        <h2>Gallery 2: Mostly Landscape</h2>
+        <div class="gallery-description">
+            Row height: 250px, Gap: 8px - Testing primarily landscape orientation images
+        </div>
+        <div class="jgs-gallery">
+            <a href="https://picsum.photos/1400/900" class="gallery-item">
+                <img src="https://picsum.photos/1400/900?random=10" width="1400" height="900" loading="lazy" alt="Wide 1">
+            </a>
+            <a href="https://picsum.photos/1200/800" class="gallery-item">
+                <img src="https://picsum.photos/1200/800?random=11" width="1200" height="800" loading="lazy" alt="Standard 1">
+            </a>
+            <a href="https://picsum.photos/1000/700" class="gallery-item">
+                <img src="https://picsum.photos/1000/700?random=12" width="1000" height="700" loading="lazy" alt="Standard 2">
+            </a>
+            <a href="https://picsum.photos/1600/800" class="gallery-item">
+                <img src="https://picsum.photos/1600/800?random=13" width="1600" height="800" loading="lazy" alt="Ultra Wide">
+            </a>
+            <a href="https://picsum.photos/1100/750" class="gallery-item">
+                <img src="https://picsum.photos/1100/750?random=14" width="1100" height="750" loading="lazy" alt="Standard 3">
+            </a>
+            <a href="https://picsum.photos/1300/850" class="gallery-item">
+                <img src="https://picsum.photos/1300/850?random=15" width="1300" height="850" loading="lazy" alt="Standard 4">
+            </a>
+        </div>
+
+        <h2>Gallery 3: Small Row Height</h2>
+        <div class="gallery-description">
+            Row height: 180px, Gap: 6px - Testing smaller images with tighter spacing
+        </div>
+        <div class="jgs-gallery">
+            <a href="https://picsum.photos/800/600" class="gallery-item">
+                <img src="https://picsum.photos/800/600?random=20" width="800" height="600" loading="lazy" alt="Small 1">
+            </a>
+            <a href="https://picsum.photos/600/800" class="gallery-item">
+                <img src="https://picsum.photos/600/800?random=21" width="600" height="800" loading="lazy" alt="Small Portrait">
+            </a>
+            <a href="https://picsum.photos/900/600" class="gallery-item">
+                <img src="https://picsum.photos/900/600?random=22" width="900" height="600" loading="lazy" alt="Small 2">
+            </a>
+            <a href="https://picsum.photos/700/700" class="gallery-item">
+                <img src="https://picsum.photos/700/700?random=23" width="700" height="700" loading="lazy" alt="Small Square">
+            </a>
+            <a href="https://picsum.photos/1000/650" class="gallery-item">
+                <img src="https://picsum.photos/1000/650?random=24" width="1000" height="650" loading="lazy" alt="Small 3">
+            </a>
+            <a href="https://picsum.photos/750/500" class="gallery-item">
+                <img src="https://picsum.photos/750/500?random=25" width="750" height="500" loading="lazy" alt="Small 4">
+            </a>
+            <a href="https://picsum.photos/850/600" class="gallery-item">
+                <img src="https://picsum.photos/850/600?random=26" width="850" height="600" loading="lazy" alt="Small 5">
+            </a>
+            <a href="https://picsum.photos/950/700" class="gallery-item">
+                <img src="https://picsum.photos/950/700?random=27" width="950" height="700" loading="lazy" alt="Small 6">
+            </a>
+            <a href="https://picsum.photos/800/550" class="gallery-item">
+                <img src="https://picsum.photos/800/550?random=28" width="800" height="550" loading="lazy" alt="Small 7">
+            </a>
+        </div>
+
+        <h2>Gallery 4: Very Small Images</h2>
+        <div class="gallery-description">
+            Row height: 240px, Gap: 6px - Testing very small images that are smaller than the target row height
+        </div>
+        <div class="jgs-gallery">
+            <a href="https://picsum.photos/300/200" class="gallery-item">
+                <img src="https://picsum.photos/300/200?random=30" width="300" height="200" loading="lazy" alt="Tiny 1">
+            </a>
+            <a href="https://picsum.photos/250/150" class="gallery-item">
+                <img src="https://picsum.photos/250/150?random=31" width="250" height="150" loading="lazy" alt="Tiny 2">
+            </a>
+            <a href="https://picsum.photos/400/180" class="gallery-item">
+                <img src="https://picsum.photos/400/180?random=32" width="400" height="180" loading="lazy" alt="Tiny Wide">
+            </a>
+            <a href="https://picsum.photos/200/300" class="gallery-item">
+                <img src="https://picsum.photos/200/300?random=33" width="200" height="300" loading="lazy" alt="Tiny Portrait">
+            </a>
+            <a href="https://picsum.photos/350/220" class="gallery-item">
+                <img src="https://picsum.photos/350/220?random=34" width="350" height="220" loading="lazy" alt="Tiny 3">
+            </a>
+            <a href="https://picsum.photos/280/160" class="gallery-item">
+                <img src="https://picsum.photos/280/160?random=35" width="280" height="160" loading="lazy" alt="Tiny 4">
+            </a>
+            <a href="https://picsum.photos/320/180" class="gallery-item">
+                <img src="https://picsum.photos/320/180?random=36" width="320" height="180" loading="lazy" alt="Tiny 5">
+            </a>
+            <a href="https://picsum.photos/380/200" class="gallery-item">
+                <img src="https://picsum.photos/380/200?random=37" width="380" height="200" loading="lazy" alt="Tiny 6">
+            </a>
+        </div>
+
+        <h2>Gallery 5: Extreme Aspect Ratios</h2>
+        <div class="gallery-description">
+            Row height: 240px, Gap: 6px - Testing extreme wide and tall aspect ratios for edge case handling
+        </div>
+        <div class="jgs-gallery">
+            <a href="https://picsum.photos/2000/400" class="gallery-item">
+                <img src="https://picsum.photos/2000/400?random=40" width="2000" height="400" loading="lazy" alt="Ultra Wide 1">
+            </a>
+            <a href="https://picsum.photos/400/1200" class="gallery-item">
+                <img src="https://picsum.photos/400/1200?random=41" width="400" height="1200" loading="lazy" alt="Ultra Tall 1">
+            </a>
+            <a href="https://picsum.photos/1800/300" class="gallery-item">
+                <img src="https://picsum.photos/1800/300?random=42" width="1800" height="300" loading="lazy" alt="Ultra Wide 2">
+            </a>
+            <a href="https://picsum.photos/300/1000" class="gallery-item">
+                <img src="https://picsum.photos/300/1000?random=43" width="300" height="1000" loading="lazy" alt="Ultra Tall 2">
+            </a>
+            <a href="https://picsum.photos/2200/350" class="gallery-item">
+                <img src="https://picsum.photos/2200/350?random=44" width="2200" height="350" loading="lazy" alt="Ultra Wide 3">
+            </a>
+            <a href="https://picsum.photos/350/1100" class="gallery-item">
+                <img src="https://picsum.photos/350/1100?random=45" width="350" height="1100" loading="lazy" alt="Ultra Tall 3">
+            </a>
+        </div>
+    </div>
+
+    <!-- Include the justified galleries script -->
+    <script src="justified-galleries.js"></script>
+    
+    <!-- Initialize the galleries -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set global defaults
+            JustifiedGalleries.defaults.rowHeight = 240;
+            JustifiedGalleries.defaults.gap = 6;
+            
+            console.log('Global defaults set:', JustifiedGalleries.defaults);
+            
+            // Initialize all galleries using the global defaults
+            JustifiedGalleries.init({
+                selector: '.jgs-gallery'
+            });
+            
+            console.log('All galleries initialized using global defaults');
+        });
+        
+        // Add a button to test resize functionality
+        window.addEventListener('load', function() {
+            const button = document.createElement('button');
+            button.textContent = 'Test Resize (Toggle Container Width)';
+            button.style.cssText = 'margin: 20px auto; display: block; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;';
+            
+            let isNarrow = false;
+            button.addEventListener('click', function() {
+                const container = document.querySelector('.container');
+                if (isNarrow) {
+                    container.style.maxWidth = '1200px';
+                    button.textContent = 'Test Resize (Make Narrow)';
+                } else {
+                    container.style.maxWidth = '600px';
+                    button.textContent = 'Test Resize (Make Wide)';
+                }
+                isNarrow = !isNarrow;
+            });
+            
+            document.body.appendChild(button);
+        });
+    </script>
+</body>
+</html>
