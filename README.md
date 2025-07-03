@@ -27,6 +27,18 @@ Images are arranged into rows that fill the container width exactly, preserving 
 
 ## ⚙️ Configuration
 
+### Configuration Options Reference
+
+All configuration options with their default values and detailed explanations:
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `selector` | String | `'.jgs-gallery'` | CSS selector for gallery containers. The script will process all elements matching this selector. |
+| `rowHeight` | Number | `300` | Target height in pixels for each row of images. Images will be scaled to approximately this height while maintaining aspect ratios. |
+| `gap` | Number | `8` | Space in pixels between images, both horizontally and vertically. Applied as margins between images. |
+| `strictRowHeight` | Boolean | `false` | **Currently unused in implementation.** Reserved for future feature to enforce exact row heights with cropping. |
+| `cropTolerance` | Number | `0.15` | **Currently unused in implementation.** Reserved for future feature to control maximum crop percentage when `strictRowHeight` is enabled. |
+
 ### Global Defaults
 
 You can set global default configurations that will be used by all galleries unless overridden:
@@ -53,8 +65,8 @@ JustifiedGalleries.init({
   selector: '.jgs-gallery', // The gallery container selector
   rowHeight: 300,           // Target height for rows (in pixels)
   gap: 8,                   // Gap between images (in pixels)
-  strictRowHeight: false,   // If true, enforce exact rowHeight and crop images
-  cropTolerance: 0.15       // Max % of image width that can be cropped (only applies if strictRowHeight is true)
+  strictRowHeight: false,   // Reserved for future use
+  cropTolerance: 0.15       // Reserved for future use
 });
 ```
 
@@ -79,6 +91,67 @@ JustifiedGalleries.init({
 ```
 
 You can call the `init()` function as many times as needed with different selectors and configurations.
+
+### Configuration Examples
+
+**Compact gallery with small images:**
+```js
+JustifiedGalleries.init({
+  selector: '.compact-gallery',
+  rowHeight: 180,
+  gap: 4
+});
+```
+
+**Large hero gallery:**
+```js
+JustifiedGalleries.init({
+  selector: '.hero-gallery',
+  rowHeight: 500,
+  gap: 16
+});
+```
+
+**Tight grid with no gaps:**
+```js
+JustifiedGalleries.init({
+  selector: '.tight-gallery',
+  rowHeight: 250,
+  gap: 0
+});
+```
+
+### API Methods
+
+The script provides several methods for managing galleries dynamically:
+
+| Method | Parameters | Description |
+|--------|------------|-------------|
+| `JustifiedGalleries.init(config)` | `config` (Object) | Initialize galleries with the specified configuration. Can be called multiple times with different selectors. |
+| `JustifiedGalleries.reset(container)` | `container` (Element) | Reset and re-layout a specific gallery container. Useful when gallery content changes dynamically. |
+| `JustifiedGalleries.resetAll()` | None | Reset and re-layout all initialized galleries. Clears all styles and re-processes all galleries. |
+| `JustifiedGalleries.refreshAllGalleries()` | None | Immediately refresh all galleries (used internally for resize events). Forces immediate re-layout without waiting. |
+
+**API Usage Examples:**
+
+```js
+// Initialize a gallery
+JustifiedGalleries.init({
+  selector: '.my-gallery',
+  rowHeight: 300,
+  gap: 10
+});
+
+// Reset a specific gallery after adding/removing images
+const galleryContainer = document.querySelector('.my-gallery');
+JustifiedGalleries.reset(galleryContainer);
+
+// Reset all galleries (useful after major layout changes)
+JustifiedGalleries.resetAll();
+
+// Force immediate refresh of all galleries
+JustifiedGalleries.refreshAllGalleries();
+```
 
 ## 🧠 How It Works
 
