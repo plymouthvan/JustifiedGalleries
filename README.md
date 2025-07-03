@@ -19,7 +19,7 @@ Images are arranged into rows that fill the container width exactly, preserving 
 ## ✅ Key Features
 
 - ✅ Fully native: No jQuery, no dependencies, no build step
-- ✅ Designed for WordPress `[gallery]` shortcode markup
+- ✅ Compatible with WordPress `[gallery]` shortcodes (with small functions.php modification)
 - ✅ Works with native lazy-loading (`loading="lazy"`)
 - ✅ No forced image loading or layout jank
 - ✅ Responsive: Resizes layout on window resize
@@ -163,3 +163,120 @@ Each gallery should follow this structure:
 ### 4. Multiple Galleries
 
 You can place as many `.jgs-gallery` containers on the page as needed. The script will apply layout logic to each one independently.
+
+## 🔗 WordPress Integration
+
+WordPress native `[gallery]` shortcodes don't generate the markup structure that JustifiedGalleries expects. To use this script with WordPress galleries, you'll need to customize the gallery output.
+
+### Adding the Custom Function
+
+Add the following code to your WordPress theme's `functions.php` file:
+
+```php
+add_filter('post_gallery', 'custom_justified_gallery_output', 10, 2);
+
+function custom_justified_gallery_output($output, $atts) {
+  $ids = explode(',', $atts['ids']);
+  
+  // Allow custom class via shortcode attribute, default to 'jgs-gallery'
+  $gallery_class = isset($atts['class']) ? esc_attr($atts['class']) : 'jgs-gallery';
+  
+  // Allow custom image size via shortcode attribute, default to 'large'
+  $image_size = isset($atts['size']) ? esc_attr($atts['size']) : 'large';
+  
+  $html = "<div class='{$gallery_class}'>";
+  
+  foreach ($ids as $id) {
+    $img = wp_get_attachment_image_src($id, $image_size);
+    $full = wp_get_attachment_image_src($id, 'full');
+    if (!$img || !$full) continue;
+    
+    $src = esc_url($img[0]);
+    $width = intval($img[1]);
+    $height = intval($img[2]);
+    $href = esc_url($full[0]);
+    $alt = esc_attr(get_post_meta($id, '_wp_attachment_image_alt', true));
+    
+    $html .= "<a href='{$href}' class='gallery-item'><img src='{$src}' alt='{$alt}' loading='lazy' width='{$width}' height='{$height}' /></a>";
+  }
+  
+  $html .= '</div>';
+  return $html;
+}
+```
+
+### How It Works
+
+This custom function:
+- **Intercepts** WordPress `[gallery]` shortcode output before it's rendered
+- **Converts** the default WordPress gallery markup to the structure JustifiedGalleries expects
+- **Uses** the 'large' image size for display (optimized for web viewing)
+- **Links** to the 'full' size image (perfect for lightboxes or full-screen viewing)
+- **Includes** proper `width` and `height` attributes required by the script
+- **Preserves** alt text and implements lazy loading for performance
+
+### Implementation Steps
+
+1. **Add the function** to your active theme's `functions.php` file
+2. **Include the JustifiedGalleries script** in your theme (see Usage Instructions above)
+3. **Initialize the script** in your theme's JavaScript
+4. **Use standard WordPress galleries** - just add `[gallery ids="1,2,3,4"]` to your posts/pages
+
+### WordPress Gallery Usage
+
+Once implemented, you can use WordPress galleries with optional custom classes and image sizes:
+
+**Standard gallery (uses default `.jgs-gallery` class and 'large' image size):**
+```
+[gallery ids="123,124,125,126"]
+```
+
+**Custom gallery class for different configurations:**
+```
+[gallery class="big-gallery" ids="123,124,125,126"]
+[gallery class="small-gallery" ids="127,128,129,130"]
+```
+
+**Custom image size (useful for performance optimization):**
+```
+[gallery size="medium_large" ids="123,124,125,126"]
+[gallery size="thumbnail" ids="127,128,129,130"]
+```
+
+**Combined custom class and size:**
+```
+[gallery class="hero-gallery" size="full" ids="123,124,125,126"]
+[gallery class="thumbnail-grid" size="medium" ids="127,128,129,130"]
+```
+
+**Available WordPress Image Sizes:**
+- `thumbnail` - Default 150px × 150px (cropped)
+- `medium` - Default 300px × 300px (max height/width)
+- `medium_large` - Default 768px × 0 (max width, unlimited height)
+- `large` - Default 1024px × 1024px (max height/width) - **Default**
+- `full` - Original uploaded image size
+- Custom sizes defined by your theme
+
+**JavaScript initialization for multiple gallery types:**
+```js
+// Initialize different gallery types with custom settings
+JustifiedGalleries.init({ 
+  selector: '.jgs-gallery',  // Default galleries
+  rowHeight: 280,
+  gap: 8
+});
+
+JustifiedGalleries.init({ 
+  selector: '.big-gallery',  // Large galleries
+  rowHeight: 400,
+  gap: 12
+});
+
+JustifiedGalleries.init({ 
+  selector: '.small-gallery', // Compact galleries
+  rowHeight: 200,
+  gap: 4
+});
+```
+
+The custom function will automatically generate the proper markup structure with your specified class and image size, and JustifiedGalleries will handle the layout based on your configurations.
