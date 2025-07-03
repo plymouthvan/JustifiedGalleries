@@ -49,7 +49,7 @@ This script applies a justified layout to any gallery container using the `.jgs-
 </div>
 ```
 
-Images are arranged into rows that fill the container width exactly, preserving their aspect ratios and cropping as needed (via `object-fit: cover`), without stretching or distorting.
+Images are arranged into rows that fill the container width exactly, preserving their aspect ratios.
 
 ## ✅ Key Features
 
@@ -71,8 +71,6 @@ All configuration options with their default values and detailed explanations:
 | `selector` | String | `'.jgs-gallery'` | CSS selector for gallery containers. The script will process all elements matching this selector. |
 | `rowHeight` | Number | `300` | Target height in pixels for each row of images. Images will be scaled to approximately this height while maintaining aspect ratios. |
 | `gap` | Number | `8` | Space in pixels between images, both horizontally and vertically. Applied as margins between images. |
-| `strictRowHeight` | Boolean | `false` | **Currently unused in implementation.** Reserved for future feature to enforce exact row heights with cropping. |
-| `cropTolerance` | Number | `0.15` | **Currently unused in implementation.** Reserved for future feature to control maximum crop percentage when `strictRowHeight` is enabled. |
 
 ### Global Defaults
 
@@ -82,8 +80,6 @@ You can set global default configurations that will be used by all galleries unl
 // Set global defaults (optional)
 JustifiedGalleries.defaults.rowHeight = 240;
 JustifiedGalleries.defaults.gap = 6;
-JustifiedGalleries.defaults.strictRowHeight = false;
-JustifiedGalleries.defaults.cropTolerance = 0.15;
 
 // Initialize galleries using global defaults
 JustifiedGalleries.init({
@@ -100,8 +96,6 @@ JustifiedGalleries.init({
   selector: '.jgs-gallery', // The gallery container selector
   rowHeight: 300,           // Target height for rows (in pixels)
   gap: 8,                   // Gap between images (in pixels)
-  strictRowHeight: false,   // Reserved for future use
-  cropTolerance: 0.15       // Reserved for future use
 });
 ```
 
@@ -194,8 +188,7 @@ JustifiedGalleries.refreshAllGalleries();
 2. Each `<img>` tag must include `width` and `height` attributes so the layout can be calculated immediately (without waiting for image load).
 3. Images are grouped into rows based on their aspect ratios to fit the container width.
 4. Each row's image widths are scaled proportionally to ensure perfect justification.
-5. CSS ensures images are cropped, not stretched, for a clean presentation.
-6. The layout automatically reflows responsively on window resize (with throttling) - **no additional event listeners needed**.
+5. The layout automatically reflows responsively on window resize (with throttling) - **no additional event listeners needed**.
 
 ## 🖼 Requirements
 
@@ -205,20 +198,15 @@ JustifiedGalleries.refreshAllGalleries();
 
 ## 🚫 Limitations
 
-- This script does not auto-detect image dimensions.
+- This script does not auto-detect image dimensions; height & width values must be present in the markup.
 - Does not support older browsers or legacy polyfills.
-- Images are visually cropped to preserve justification.
 
 ## 📁 Files
 
 - `justified-galleries.js` – main script
+- `justified-galleries.min.js` – minified script (you should probably use this one)
 
-There is no separate CSS file. All necessary layout, spacing, and cropping styles are injected directly by the script using inline styles. This approach avoids the limitations of CSS-based gaps and ensures perfect justification across all rows.
-
-## 📌 TODO (For Development)
-
-- Add optional debug mode for visualizing row groupings
-- Expose resize trigger manually for SPA compatibility
+There is no separate CSS file. All necessary layout, spacing styles are injected directly by the script using inline styles. This approach avoids the limitations of CSS-based gaps and ensures perfect justification across all rows. You should avoid targeting the gallery items via css, except for strictuly visual adjustments; e.g., borders, shadows, corner rounding, etc. It's likely to break the layout.
 
 ## 🚀 Usage Instructions
 
@@ -227,7 +215,7 @@ There is no separate CSS file. All necessary layout, spacing, and cropping style
 Include the JavaScript file just before `</body>` or with `defer` in the `<head>`:
 
 ```html
-<script src="/path/to/justified-galleries.js" defer></script>
+<script src="/path/to/justified-galleries.min.js" defer></script>
 ```
 
 ### 2. Initialize the Script
@@ -241,8 +229,6 @@ Call the `JustifiedGalleries.init()` function after the DOM has loaded:
       selector: '.jgs-gallery',
       rowHeight: 280,
       gap: 10,
-      strictRowHeight: false,
-      cropTolerance: 0.15
     });
   });
 </script>
