@@ -2,6 +2,41 @@
 
 A lightweight, dependency-free JavaScript and CSS solution for rendering image galleries in a justified layout, similar to the behavior of the original jQuery-based [JustifiedGallery](https://miromannino.github.io/Justified-Gallery/) plugin — but with full native support for lazy-loading and modern image practices.
 
+## 🚀 Quick Start
+
+Get started in under 2 minutes with the CDN version:
+
+### 1. Include the Script
+```html
+<script src="https://cdn.jsdelivr.net/gh/plymouthvan/JustifiedGalleries@latest/justified-galleries.min.js" defer></script>
+```
+
+### 2. Add Your Gallery HTML
+```html
+<div class="jgs-gallery">
+  <a href="full1.jpg" class="gallery-item">
+    <img src="thumb1.jpg" width="1024" height="683" loading="lazy" alt="">
+  </a>
+  <a href="full2.jpg" class="gallery-item">
+    <img src="thumb2.jpg" width="800" height="533" loading="lazy" alt="">
+  </a>
+  <!-- more images... -->
+</div>
+```
+
+### 3. Initialize the Gallery
+```html
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    JustifiedGalleries.init();
+  });
+</script>
+```
+
+That's it! Your gallery will automatically arrange images in a justified layout with responsive behavior.
+
+---
+
 ## 🔧 Overview
 
 This script applies a justified layout to any gallery container using the `.jgs-gallery` class (or any other selector defined via configuration). It works with a simplified gallery markup structure (not standard WordPress markup):
